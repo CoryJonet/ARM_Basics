@@ -1,0 +1,1 @@
+--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1" -I Q:\uVision4.5\ARM\RV31\Inc -I Q:\uVision4.5\ARM\CMSIS\Include -I Q:\uVision4.5\ARM\Inc\Luminary --list "Startup.lst" --xref -o "Startup.o" --depend "Startup.d" "Startup.s"

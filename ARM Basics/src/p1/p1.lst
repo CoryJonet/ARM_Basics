@@ -1,0 +1,220 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 export           problem1
+    2 00000000                 export           SIZE
+    3 00000000                 export           SRC
+    4 00000000                 export           ANS
+    5 00000000         
+    6 00000000 00000004 
+                       WORD    EQU              4
+    7 00000000         
+    8 00000000                 AREA             FLASH, CODE, READONLY
+    9 00000000                 ALIGN
+   10 00000000         
+   11 00000000         ;*******************************************************
+                       ***********************
+   12 00000000         ; Initialize address 0x20000000 to the values defined in
+                        problem 1
+   13 00000000         ;*******************************************************
+                       ***********************
+   14 00000000         problem1
+   15 00000000         
+   16 00000000 E92D 5FFF       PUSH             {R0-R12, LR}
+   17 00000004         
+   18 00000004         ;*******************************************************
+                       ***********************
+   19 00000004         ; DO NOT MODIFY ABOVE
+   20 00000004         ;*******************************************************
+                       ***********************
+   21 00000004         
+   22 00000004         ;*******************************************************
+                       ***********************
+   23 00000004         ; ADD CODE BELOW
+   24 00000004         ;*******************************************************
+                       ***********************
+   25 00000004         
+   26 00000004 480D            LDR              R0, =(SIZE) ; Max size counter
+   27 00000006 490E            LDR              R1, =(SRC)  ; First source memo
+                                                            ry address 
+   28 00000008 4E0E            LDR              R6, =(ANS)  ; Answer
+   29 0000000A F04F 0200       MOV              R2, #0      ; Counter i
+   30 0000000E F04F 35FF       MOV              R5, #0xFFFFFFFF ; Puts the bigg
+                                                            est possible value 
+                                                            into R5 to compare 
+                                                            against
+   31 00000012 6807            LDR              R7, [R0]
+   32 00000014         
+   33 00000014         Loop
+   34 00000014         
+   35 00000014 588B            LDR              R3, [R1, R2] ; Get the ith elem
+                                                            ent in SRC 
+   36 00000016         
+   37 00000016 089C            LSRS             R4, R3, #2  ; Shifts the number
+                                                             by 2 bits right, w
+                                                            hich is equivalent 
+                                                            to MOD
+   38 00000018 DD02            BLE              Not_Multiple ; Branches if SHR 
+                                                            didn't give Z = 0 f
+                                                            lag...not divisable
+                                                             by 4
+   39 0000001A         
+   40 0000001A 42AB            CMP              R3, R5      ; Compares to see i
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+                                                            f contents R3 is sm
+                                                            aller than contents
+                                                             R5
+   41 0000001C BF58 461D       MOVPL            R5, R3      ; Moves contents R3
+                                                             into contents R5 i
+                                                            f it's smaller
+   42 00000020         
+   43 00000020         
+   44 00000020         Not_Multiple
+   45 00000020 F102 0204       ADD              R2, R2, #WORD ; Increments i co
+                                                            unter
+   46 00000024 1F3F            SUBS             R7, R7, #WORD ; Decrements the 
+                                                            size count ;error
+   47 00000026 D1F5            BNE              Loop
+   48 00000028         
+   49 00000028 F04F 0200       MOV              R2, #0      ; Used to place #0 
+                                                            in R2
+   50 0000002C F1B5 3FFF       CMP              R5, #0xFFFFFFFF ; Checks to see
+                                                             if any # was devis
+                                                            able by 4
+   51 00000030 BFCC 6035       STRGT            R5, [R6]    ; If devisable by 4
+                                                             smallest # found, 
+                                                            store that # in ANS
+                                                            
+   52 00000034 6032            STRLE            R2, [R6]    ; Else store #0 in 
+                                                            ANS
+   53 00000036         
+   54 00000036         ;*******************************************************
+                       ***********************
+   55 00000036         ; DO NOT MODIFY BELOW
+   56 00000036         ;*******************************************************
+                       ***********************
+   57 00000036         
+   58 00000036 E8BD 9FFF       POP              {R0-R12, PC}
+   59 0000003A 00 00           ALIGN
+   60 0000003C         
+   61 0000003C         
+   62 0000003C 00000000 
+              00000000 
+              00000000         AREA             SRAM, READWRITE
+   63 00000000 00 00 00 
+              00       ANS     SPACE            4*1
+   64 00000004 00 00 00 
+              00       SIZE    SPACE            4*1
+   65 00000008 00 00 00 
+              00       SRC     SPACE            4*1
+   66 0000000C                 END
+Command Line: --debug --xref --cpu=Cortex-M4 --apcs=interwork --depend=p1.d -op
+1.o -IQ:\uVision4.5\ARM\RV31\Inc -IQ:\uVision4.5\ARM\CMSIS\Include -IQ:\uVision
+4.5\ARM\Inc\Luminary --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1
+" --list=p1.lst p1.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+FLASH 00000000
+
+Symbol: FLASH
+   Definitions
+      At line 8 in file p1.s
+   Uses
+      None
+Comment: FLASH unused
+Loop 00000014
+
+Symbol: Loop
+   Definitions
+      At line 33 in file p1.s
+   Uses
+      At line 47 in file p1.s
+Comment: Loop used once
+Not_Multiple 00000020
+
+Symbol: Not_Multiple
+   Definitions
+      At line 44 in file p1.s
+   Uses
+      At line 38 in file p1.s
+Comment: Not_Multiple used once
+problem1 00000000
+
+Symbol: problem1
+   Definitions
+      At line 14 in file p1.s
+   Uses
+      At line 1 in file p1.s
+Comment: problem1 used once
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+ANS 00000000
+
+Symbol: ANS
+   Definitions
+      At line 63 in file p1.s
+   Uses
+      At line 4 in file p1.s
+      At line 28 in file p1.s
+
+SIZE 00000004
+
+Symbol: SIZE
+   Definitions
+      At line 64 in file p1.s
+   Uses
+      At line 2 in file p1.s
+      At line 26 in file p1.s
+
+SRAM 00000000
+
+Symbol: SRAM
+   Definitions
+      At line 62 in file p1.s
+   Uses
+      None
+Comment: SRAM unused
+SRC 00000008
+
+Symbol: SRC
+   Definitions
+      At line 65 in file p1.s
+   Uses
+      At line 3 in file p1.s
+      At line 27 in file p1.s
+
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Absolute symbols
+
+WORD 00000004
+
+Symbol: WORD
+   Definitions
+      At line 6 in file p1.s
+   Uses
+      At line 45 in file p1.s
+      At line 46 in file p1.s
+
+1 symbol
+343 symbols in table

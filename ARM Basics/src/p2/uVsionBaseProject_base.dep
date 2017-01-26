@@ -1,0 +1,4 @@
+Dependencies for Project 'uVsionBaseProject', Target 'base': (DO NOT MODIFY !)
+F (.\main.s)(0x52F42D2A)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1" -I Q:\uVision4.5\ARM\RV31\Inc -I Q:\uVision4.5\ARM\CMSIS\Include -I Q:\uVision4.5\ARM\Inc\Luminary --list "main.lst" --xref -o "main.o" --depend "main.d")
+F (.\p2.s)(0x52F43F21)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1" -I Q:\uVision4.5\ARM\RV31\Inc -I Q:\uVision4.5\ARM\CMSIS\Include -I Q:\uVision4.5\ARM\Inc\Luminary --list "p2.lst" --xref -o "p2.o" --depend "p2.d")
+F (.\Startup.s)(0x52F42BE2)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork --pd "__MICROLIB SETA 1" -I Q:\uVision4.5\ARM\RV31\Inc -I Q:\uVision4.5\ARM\CMSIS\Include -I Q:\uVision4.5\ARM\Inc\Luminary --list "Startup.lst" --xref -o "Startup.o" --depend "Startup.d")

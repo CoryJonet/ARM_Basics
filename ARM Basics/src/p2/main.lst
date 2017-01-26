@@ -1,0 +1,100 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ; Filename:     main.s 
+    2 00000000         ; Author:       REPLACE WITH YOUR NAMES 
+    3 00000000         ; Description:  
+    4 00000000                 export           __main
+    5 00000000                 import           problem2
+    6 00000000                 import           NUM1
+    7 00000000                 import           NUM2
+    8 00000000         
+    9 00000000         
+   10 00000000         
+   11 00000000         ;Indicating where the CODE section of the program starts
+                       
+   12 00000000                 AREA             FLASH, CODE, READONLY
+   13 00000000         
+   14 00000000         
+   15 00000000         ;**********************************************
+   16 00000000         ; main program start
+   17 00000000         ;**********************************************
+   18 00000000         __main
+   19 00000000 4807            LDR              R0, =(NUM1)
+   20 00000002 4908            LDR              R1, =(NUM2)
+   21 00000004 F245 6278 
+              F2C1 2234        MOV32            R2, #0x12345678
+   22 0000000C F245 1311 
+              F2C9 2324        MOV32            R3, #0x92245111
+   23 00000014 6002            STR              R2, [R0]
+   24 00000016 600B            STR              R3, [R1]
+   25 00000018 F7FF FFFE       BL               problem2
+   26 0000001C E7FE            B                __main
+   27 0000001E 00 00           ALIGN
+   28 00000020         
+   29 00000020                 END
+              00000000 
+              00000000 
+Command Line: --debug --xref --cpu=Cortex-M4 --apcs=interwork --depend=main.d -
+omain.o -IQ:\uVision4.5\ARM\RV31\Inc -IQ:\uVision4.5\ARM\CMSIS\Include -IQ:\uVi
+sion4.5\ARM\Inc\Luminary --predefine="__EVAL SETA 1" --predefine="__MICROLIB SE
+TA 1" --list=main.lst main.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+FLASH 00000000
+
+Symbol: FLASH
+   Definitions
+      At line 12 in file main.s
+   Uses
+      None
+Comment: FLASH unused
+__main 00000000
+
+Symbol: __main
+   Definitions
+      At line 18 in file main.s
+   Uses
+      At line 4 in file main.s
+      At line 26 in file main.s
+
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+NUM1 00000000
+
+Symbol: NUM1
+   Definitions
+      At line 6 in file main.s
+   Uses
+      At line 19 in file main.s
+Comment: NUM1 used once
+NUM2 00000000
+
+Symbol: NUM2
+   Definitions
+      At line 7 in file main.s
+   Uses
+      At line 20 in file main.s
+Comment: NUM2 used once
+problem2 00000000
+
+Symbol: problem2
+   Definitions
+      At line 5 in file main.s
+   Uses
+      At line 25 in file main.s
+Comment: problem2 used once
+3 symbols
+339 symbols in table
